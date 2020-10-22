@@ -9,7 +9,7 @@
 | first_name      | string   | null: false               |
 | last_name_kana  | string   | null: false               |
 | first_name_kana | string   | null: false               |
-| birthday        | datetime | null: false               |
+| birthday        | date     | null: false               |
 
 ### Association
 has_many :items
@@ -17,18 +17,18 @@ has_many :buys
 
 ## itemsテーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| name             | string     | null: false                    |
-| category         | string     | null: false                    |
-| image            |            | ActiveStorage                  |
-| price            | integer    | null: false                    |
-| status           | string     | null: false                    |
-| description      | text       | null: false                    |
-| area             | string     | null: false                    |
-| date_of_shipment | string     | null: false                    |
-| burden           | string     | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| name                | string     | null: false                    |
+| category_id         | integer    | null: false                    |
+| image               |            | ActiveStorage                  |
+| price               | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| description         | text       | null: false                    |
+| area_id             | integer    | null: false                    |
+| date_of_shipment_id | integer    | null: false                    |
+| burden_id           | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -38,26 +38,25 @@ has_one    :buy
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| payment | integer    | null: false                    |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
-| address | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
 belongs_to :item
-belongs_to :address
+has_one    :address
 
 ## addressesテーブル
 
-| Column           | Type       | Options     |
-| ---------------- | ---------- | ----------- |
-| postal_code      | integer    | null: false |
-| prefecture       | string     | null: false |
-| municipality     | string     | null: false |
-| house_number     | integer    | null: false |
-| building_name    | string     | null: false |
-| phone_number     | integer    | null: false |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| municipality  | string     | null: false                    |
+| house_number  | integer    | null: false                    |
+| building_name | string     |                                |
+| phone_number  | string     | null: false                    |
+| buy           | references | null: false, foreign_key: true |
 
 ### Association
-has_one :buy
+belongs_to :buy
