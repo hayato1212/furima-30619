@@ -8,4 +8,8 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :date_of_shipment_id
     validates :burden_id
+    validates :image
+
+    belongs_to :user
+    has_one_attached :image
 end
