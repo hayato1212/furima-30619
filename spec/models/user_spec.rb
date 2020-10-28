@@ -51,54 +51,54 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
     it 'last_nameが漢字、平仮名、片仮名以外では登録できないこと' do
-      @user.last_name = "sakaki"
+      @user.last_name = 'sakaki'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name is invalid")
+      expect(@user.errors.full_messages).to include('Last name is invalid')
     end
     it 'first_nameが漢字、平仮名、片仮名以外では登録できないこと' do
-      @user.first_name = "hayato"
+      @user.first_name = 'hayato'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name is invalid")
+      expect(@user.errors.full_messages).to include('First name is invalid')
     end
     it 'last_name_kanaが片仮名以外では登録できないこと' do
-      @user.last_name_kana = "榊"
+      @user.last_name_kana = '榊'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      expect(@user.errors.full_messages).to include('Last name kana is invalid')
     end
     it 'first_name_kanaが片仮名以外では登録できないこと' do
-      @user.first_name_kana = "勇人"
+      @user.first_name_kana = '勇人'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name kana is invalid")
+      expect(@user.errors.full_messages).to include('First name kana is invalid')
     end
     it '重複したemailが存在する場合登録できないこと' do
       @user.save
       another_user = FactoryBot.build(:user, email: @user.email)
       another_user.valid?
-      expect(another_user.errors.full_messages).to include("Email has already been taken")
+      expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
     it 'emailに@が存在しないと登録できないこと' do
-      @user.email = "test"
+      @user.email = 'test'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
     it 'passwordが5文字以下では登録できないこと' do
-      @user.password = "test0"
+      @user.password = 'test0'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
     it 'passwordが半角数字のみでは登録できないこと' do
-      @user.password = "000000"
+      @user.password = '000000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'passwordが半角英字のみでは登録できないこと' do
-      @user.password = "aaaaaa"
+      @user.password = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
-    it "passwordとpassword_confirmationが不一致では登録できないこと" do
-      @user.password = "123456"
-      @user.password_confirmation = "1234567"
+    it 'passwordとpassword_confirmationが不一致では登録できないこと' do
+      @user.password = '123456'
+      @user.password_confirmation = '1234567'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
