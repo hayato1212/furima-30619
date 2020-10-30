@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name,                length: { maximum: 40 }
     validates :category_id,         numericality: { other_than: 1 }
-    validates :price,               format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9999999 }
+    validates :price,               format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9_999_999 }
     validates :status_id,           numericality: { other_than: 1 }
     validates :description,         length: { maximum: 1000 }
     validates :prefecture_id,       numericality: { other_than: 1 }
