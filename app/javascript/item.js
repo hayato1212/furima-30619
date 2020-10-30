@@ -6,8 +6,9 @@ window.addEventListener('load', function(){
   priceField.addEventListener('input', function(){
     const price = document.getElementById("item-price").value;
     fee = price * 0.1;
-    profit = price - fee;
-    feeField.textContent = fee;
+    const calc = Math.ceil(fee)
+    profit = price - calc;
+    feeField.textContent = calc;
     profitField.textContent = profit;
   });
 });
