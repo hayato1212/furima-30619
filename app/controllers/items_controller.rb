@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: :new
 
   def index
-    # 商品一覧機能で実装 @item = Item.all
+    @item = Item.all.order(created_at: :asc)
   end
 
   def new
