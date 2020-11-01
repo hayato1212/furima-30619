@@ -13,7 +13,7 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  with_options presence: true, numericality: { other_than: 1 }do
+  with_options presence: true, numericality: { other_than: 1 } do
     validates :prefecture_id
     validates :date_of_shipment_id
     validates :burden_id
@@ -24,4 +24,3 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 end
-
