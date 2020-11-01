@@ -27,30 +27,50 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Description can't be blank")
     end
+    it '商品のカテゴリーが空では登録できないこと' do
+      @item.category_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category can't be blank")
+    end
     it 'カテゴリーに保存するidが1では登録できないこと' do
       @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
-    it '商品の状態に保存するidが1では登録できないこと' do
-      @item.status_id = 1
+    it '商品の状態が空では登録できないこと' do
+      @item.status_id = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include('Status must be other than 1')
+      expect(@item.errors.full_messages).to include("Status can't be blank")
     end
     it '商品の状態に保存するidが1では登録できないこと' do
       @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Status must be other than 1')
+    end
+    it '配送料の負担が空では登録できないこと' do
+      @item.burden_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Burden can't be blank")
     end
     it '配送料の負担に保存するidが1では登録できないこと' do
       @item.burden_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Burden must be other than 1')
     end
+    it '配送料の負担が空では登録できないこと' do
+      @item.prefecture_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+    end
     it '発送元の地域に保存するidが1では登録できないこと' do
       @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
+    end
+    it '発送までの日数が空では登録できないこと' do
+      @item.date_of_shipment_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Date of shipment can't be blank")
     end
     it '発送までの日数に保存するidが1では登録できないこと' do
       @item.date_of_shipment_id = 1
