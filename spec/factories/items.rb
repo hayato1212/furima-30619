@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :item do
-    name { Faker::Number.number(digits: 41) }
+    name { Faker::Commerce.product_name }
     category_id { 2 }
     price { Faker::Number.between(300, 9_999_999) }
     status_id { 2 }
-    description { Faker::Number.number(digits: 1001) }
+    description { Faker::Lorem.sentence }
     prefecture_id       { 2 }
     date_of_shipment_id { 2 }
     burden_id           { 2 }

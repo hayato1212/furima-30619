@@ -8,16 +8,20 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :name,                length: { maximum: 40 }
-    validates :category_id,         numericality: { other_than: 1 }
     validates :price,               format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9_999_999 }
-    validates :status_id,           numericality: { other_than: 1 }
     validates :description,         length: { maximum: 1000 }
-    validates :prefecture_id,       numericality: { other_than: 1 }
-    validates :date_of_shipment_id, numericality: { other_than: 1 }
-    validates :burden_id,           numericality: { other_than: 1 }
     validates :image
+  end
+
+  with_options presence: true, numericality: { other_than: 1 }do
+    validates :prefecture_id
+    validates :date_of_shipment_id
+    validates :burden_id
+    validates :status_id
+    validates :category_id
   end
 
   belongs_to :user
   has_one_attached :image
 end
+
