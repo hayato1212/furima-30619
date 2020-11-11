@@ -57,7 +57,7 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('Burden must be other than 1')
     end
-    it '配送料の負担が空では登録できないこと' do
+    it '発送元の地域が空では登録できないこと' do
       @item.prefecture_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture can't be blank")
