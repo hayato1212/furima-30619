@@ -1,5 +1,6 @@
 class BuysController < ApplicationController
   before_action :set_buy, only: [:index, :create]
+  before_action :sort
 
   def index
     @item_buy = ItemBuy.new
@@ -33,5 +34,14 @@ class BuysController < ApplicationController
 
   def set_buy
     @item = Item.find(params[:item_id])
+  end
+
+  def sort
+    @item = Item.find(params[:item_id])
+    if user_signed_in? && current_user.id != @item.user_id && @item.buy == nil
+      render :index
+    else
+      redirect_to item_path(@item.id)
+    end
   end
 end
