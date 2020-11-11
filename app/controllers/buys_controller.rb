@@ -1,11 +1,11 @@
 class BuysController < ApplicationController
+  before_action :set_buy, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @item_buy = ItemBuy.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @item_buy = ItemBuy.new(buy_params)
     if @item_buy.valid?
       pay_item
@@ -29,5 +29,9 @@ class BuysController < ApplicationController
       card: buy_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_buy
+    @item = Item.find(params[:item_id])
   end
 end

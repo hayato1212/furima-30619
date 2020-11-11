@@ -4,6 +4,7 @@ FactoryBot.define do
     prefecture_id { 2 }
     municipality  { Faker::Lorem.sentence}
     house_number  { Faker::Lorem.sentence}
+    building_name { Faker::Lorem.sentence}
     phone_number  { Faker::Number.number(digits: 11)}
     token         { Faker::Lorem.sentence}
   end

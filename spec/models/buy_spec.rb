@@ -8,7 +8,10 @@ RSpec.describe ItemBuy, type: :model do
 
     # 正常系テスト
     it '全て記入してあることで登録できること' do
-      
+      expect(@buy).to be_valid
+    end
+    it '建物名を記述しなくても登録できること' do
+      @buy.building_name = ""
       expect(@buy).to be_valid
     end
 
