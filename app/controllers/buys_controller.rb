@@ -39,7 +39,7 @@ class BuysController < ApplicationController
   def sort
     @item = Item.find(params[:item_id])
     unless user_signed_in? && current_user.id != @item.user_id && @item.buy == nil
-      redirect_to item_path(@item.id)
+      redirect_to items_path
     end
   end
 end
